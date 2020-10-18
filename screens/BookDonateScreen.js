@@ -62,7 +62,7 @@ export default class BookDonateScreen extends Component {
           <TouchableOpacity
             style={styles.button}
             onPress={() => {
-              this.props.navigation.navigate("RecieverDetails", {
+              this.props.navigation.navigate("ReceiverDetails", {
                 details: item,
               });
             }}

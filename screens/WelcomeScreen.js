@@ -11,11 +11,9 @@ import {
   Alert,
   ScrollView,
 } from "react-native";
-
 import SantaAnimation from "../components/SantaClaus.js";
 import db from "../config";
 import firebase from "firebase";
-
 import { Icon } from "react-native-elements";
 import { RFValue } from "react-native-responsive-fontsize";
 

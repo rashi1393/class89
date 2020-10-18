@@ -2,10 +2,7 @@ import React from 'react';
 import { createStackNavigator } from 'react-navigation-stack';
 
 import BookDonateScreen from '../screens/BookDonateScreen';
-import RecieverDetailsScreen  from '../screens/RecieverDetailsScreen';
-
-
-
+import ReceiverDetailsScreen  from '../screens/ReceiverDetailsScreen';
 
 export const AppStackNavigator = createStackNavigator({
   BookDonateList : {
@@ -14,8 +11,8 @@ export const AppStackNavigator = createStackNavigator({
       headerShown : false
     }
   },
-  RecieverDetails : {
-    screen : RecieverDetailsScreen,
+  ReceiverDetails : {
+    screen : ReceiverDetailsScreen,
     navigationOptions:{
       headerShown : false
     }

@@ -5,36 +5,36 @@ import firebase from "firebase";
 import { RFValue } from "react-native-responsive-fontsize";
 import db from "../config.js";
 
-export default class RecieverDetailsScreen extends Component {
+export default class ReceiverDetailsScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
       userId: firebase.auth().currentUser.email,
       userName: "",
-      recieverId: this.props.navigation.getParam("details")["user_id"],
+      receiverId: this.props.navigation.getParam("details")["user_id"],
       requestId: this.props.navigation.getParam("details")["request_id"],
       bookName: this.props.navigation.getParam("details")["book_name"],
       bookImage: "#",
       reason_for_requesting: this.props.navigation.getParam("details")[
         "reason_to_request"
       ],
-      recieverName: "",
-      recieverContact: "",
-      recieverAddress: "",
-      recieverRequestDocId: "",
+      receiverName: "",
+      receiverContact: "",
+      receiverAddress: "",
+      receiverRequestDocId: "",
     };
   }
 
-  getRecieverDetails() {
+  getReceiverDetails() {
     db.collection("users")
-      .where("email_id", "==", this.state.recieverId)
+      .where("email_id", "==", this.state.receiverId)
       .get()
       .then((snapshot) => {
         snapshot.forEach((doc) => {
           this.setState({
-            recieverName: doc.data().first_name,
-            recieverContact: doc.data().contact,
-            recieverAddress: doc.data().address,
+            receiverName: doc.data().first_name,
+            receiverContact: doc.data().contact,
+            receiverAddress: doc.data().address,
           });
         });
       });
@@ -45,7 +45,7 @@ export default class RecieverDetailsScreen extends Component {
       .then((snapshot) => {
         snapshot.forEach((doc) => {
           this.setState({
-            recieverRequestDocId: doc.id,
+            receiverRequestDocId: doc.id,
             bookImage: doc.data().image_link,
           });
         });
@@ -69,7 +69,7 @@ export default class RecieverDetailsScreen extends Component {
     db.collection("all_donations").add({
       book_name: this.state.bookName,
       request_id: this.state.requestId,
-      requested_by: this.state.recieverName,
+      requested_by: this.state.receiverName,
       donor_id: this.state.userId,
       request_status: "Donor Interested",
     });
@@ -79,7 +79,7 @@ export default class RecieverDetailsScreen extends Component {
     var message =
       this.state.userName + " has shown interest in donating the book";
     db.collection("all_notifications").add({
-      targeted_user_id: this.state.recieverId,
+      targeted_user_id: this.state.receiverId,
       donor_id: this.state.userId,
       request_id: this.state.requestId,
       book_name: this.state.bookName,
@@ -90,7 +90,7 @@ export default class RecieverDetailsScreen extends Component {
   };
 
   componentDidMount() {
-    this.getRecieverDetails();
+    this.getReceiverDetails();
     this.getUserDetails(this.state.userId);
   }
 
@@ -178,7 +178,7 @@ export default class RecieverDetailsScreen extends Component {
                   fontSize: RFValue(30),
                 }}
               >
-                Reciever Information
+                Receiver Information
               </Text>
               <Text
                 style={{
@@ -187,7 +187,7 @@ export default class RecieverDetailsScreen extends Component {
                   marginTop: RFValue(30),
                 }}
               >
-                Name : {this.state.recieverName}
+                Name : {this.state.receiverName}
               </Text>
               <Text
                 style={{
@@ -196,7 +196,7 @@ export default class RecieverDetailsScreen extends Component {
                   marginTop: RFValue(30),
                 }}
               >
-                Contact: {this.state.recieverContact}
+                Contact: {this.state.receiverContact}
               </Text>
               <Text
                 style={{
@@ -205,7 +205,7 @@ export default class RecieverDetailsScreen extends Component {
                   marginTop: RFValue(30),
                 }}
               >
-                Address: {this.state.recieverAddress}
+                Address: {this.state.receiverAddress}
               </Text>
             </View>
             <View
@@ -215,7 +215,7 @@ export default class RecieverDetailsScreen extends Component {
                 alignItems: "center",
               }}
             >
-              {this.state.recieverId !== this.state.userId ? (
+              {this.state.receiverId !== this.state.userId ? (
                 <TouchableOpacity
                   style={styles.button}
                   onPress={() => {

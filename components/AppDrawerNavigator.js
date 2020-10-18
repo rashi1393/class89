@@ -6,7 +6,6 @@ import MyDonationScreen from '../screens/MyDonationScreen';
 import NotificationScreen from '../screens/NotificationScreen';
 import SettingScreen from '../screens/SettingScreen';
 import MyReceivedBooksScreen from '../screens/MyReceivedBooksScreen';
-
 import {Icon} from 'react-native-elements';
 
 export const AppDrawerNavigator = createDrawerNavigator({
